@@ -1,0 +1,28 @@
+<div class="well">
+    <a routerLink="/lugares">Lugares</a> / Crear Negocio
+</div>
+<div class="container">
+    <div class="col-m4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Crear nuevo negocio</h3>
+            </div>
+            <div class="panel-body">
+                <label>Nombre</label>
+                <input type="text" class="form-control" [(ngModel)]="lugar.nombre" placeholder="Nombre"  />
+                <br/>
+                <label>Distancia</label>
+                <input type="text" class="form-control" [(ngModel)]="lugar.distancia" placeholder="Distancia" />
+                <br/>
+                <label>Descripcion</label>
+                <textarea class="form-control" [(ngModel)]="lugar.descripcion"></textarea>
+                <br/>
+                <label>Plan</label>
+                <input type="text" class="form-control" [(ngModel)]="lugar.plan" placeholder="Plan" />
+                <hr/>
+                <a routerLink="" class="btn btn-primary" (click)="guardarLugar()" >Enviar</a>
+                <a routerLink="/lugares" class="btn btn-default">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
