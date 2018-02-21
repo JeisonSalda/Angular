@@ -16,6 +16,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NegocioComponent } from './negocio/negocio.component';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 
 const appRoutes : Routes = [
@@ -52,7 +53,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [LugaresServices],
   bootstrap: [AppComponent]

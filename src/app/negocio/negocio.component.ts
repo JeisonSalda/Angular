@@ -12,7 +12,15 @@ export class NegocioComponent{
     }
 
     guardarLugar(){
-        this.lugarService.guardarLugar(this.lugar);
+        var direccion = this.lugar.direccion + ',' + this.lugar.ciudad + ',' + this.lugar.pais;
+        this.lugarService.obtenerUbicacion( direccion ).subscribe( ( jsonUbicacion ) => {
+            this.lugar.lat = jsonUbicacion.json().results[0].geometry.location.lat;
+            this.lugar.lng = jsonUbicacion.json().results[0].geometry.location.lng;
+            this.lugar.id = Date.now();
+            this.lugar.active = true; 
+            this.lugarService.guardarLugar(this.lugar);
+        })
+        
     }
 
 }

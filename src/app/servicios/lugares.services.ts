@@ -1,23 +1,18 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
+import { Http } from "@angular/http";
 
 @Injectable()
 export class LugaresServices{
 
-    listaLugares:any = [
-        {id:1,active:true,distancia:1, nombre:"Ceiba Software", description:"Ceiba lo mejor", plan: "Pagado"},
-        {id:2,active:false,distancia:2, nombre:"PSL", description:"PSL no se", plan: "Gratuito"},
-        {id:3,active:true, distancia:4, nombre:"Intergrupo", description:"Integrupo mas o menos", plan:"Pagado"},
-        {id:4,active:true, distancia:10, nombre:"Google Inc", description:"Google", plan:"Pagado"},
-        {id:5,active:true, distancia:20, nombre:"Amazon Inc", description:"Amazon", plan:"Pagado"}
-      ];
+    listaLugares:any = {};
 
-    constructor( private afDB : AngularFireDatabase ){
+    constructor( private afDB : AngularFireDatabase, private http : Http ){
 
     }
 
     public getLugares(){
-        return this.listaLugares;
+        return this.afDB.list('lugares/');
     }
 
     buscarLugar(id){
@@ -26,7 +21,13 @@ export class LugaresServices{
 
     guardarLugar(lugar){
         console.log(lugar);
-        this.afDB.database.ref('lugares/1').set(lugar);
+        this.afDB.database.ref('lugares/' + lugar.id).set(lugar);
+    }
+
+    public obtenerUbicacion( direccion ){
+        return this.http.get("http://maps.google.com/maps/api/geocode/json?address=" + direccion);
+
+        //=78-43+diagonal+70f,+Bogota,Colombia
     }
 
 }
