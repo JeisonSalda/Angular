@@ -24,7 +24,7 @@ const appRoutes : Routes = [
   {path:'lugares', component: LugaresComponent},
   {path:'detalle/:id', component: DetalleComponent},
   {path:'contacto', component: ContactoComponent},
-  {path:'negocio', component: NegocioComponent}
+  {path:'negocio/:id', component: NegocioComponent}
 
 ]
 export const firebaseConfig = {

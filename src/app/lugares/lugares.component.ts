@@ -8,13 +8,15 @@ import { LugaresServices } from '../servicios/lugares.services';
 
 export class LugaresComponent{
 
-    lat: number = 4.6560432;
-    lng: number = -74.0595718;
+    lat: number = 6.2836246;
+    lng: number = -75.6069129;
     listaLugares = null;    
     constructor( private lugaresServicio: LugaresServices ){
         lugaresServicio.getLugares()
-        .valueChanges().subscribe( lugares => {
-            this.listaLugares = lugares;
+        .subscribe( lugares => {
+            this.listaLugares = lugares.json();
+            var me = this;
+            this.listaLugares =  Object.keys(me.listaLugares).map( function( key ){ return me.listaLugares[ key ] });
         });
     }
 

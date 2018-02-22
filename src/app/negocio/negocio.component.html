@@ -1,11 +1,12 @@
 <div class="well">
-    <a routerLink="/lugares">Lugares</a> / Crear Negocio
+    <a routerLink="/lugares">Lugares</a> / <span *ngIf="lugar.id == null">Crear negocio</span><span *ngIf=" lugar.id != null && lugar.id != 'new' ">Editar negocio</span>
 </div>
 <div class="container">
     <div class="col-m4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Crear nuevo negocio</h3>
+                <h3 class="panel-title" *ngIf="lugar.id == null">Crear nuevo negocio</h3>
+                <h3 class="panel-title" *ngIf=" lugar.id != null && lugar.id != 'new' ">Editar negocio</h3>
             </div>
             <div class="panel-body">
                 <label>Nombre</label>

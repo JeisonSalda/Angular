@@ -1,14 +1,14 @@
-<agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]= "12" >
+    <agm-marker *ngFor="let lugar of listaLugares" [latitude]="lugar.lat" [longitude]="lugar.lng" ></agm-marker>
 </agm-map>
 <div class="container">
     <div class="row">
         <div class="col-md-4">
         <h2>Lugares Cercanos</h2>
-        <a class="btn btn-primary" routerLink="/negocio">Crear Nuevo Negocio</a>
+        <a class="btn btn-primary" routerLink="/negocio/new">Crear Nuevo Negocio</a>
             <ul class="list-group">
                 <ng-container *ngFor="let lugar of listaLugares">
-                    <a routerLink="/detalle/{{lugar.id}}" [queryParams]="{action:'view',actionDos:'google'}"><li class="list-group-item" *ngIf="lugar.active">{{lugar.nombre}}</li></a>
+                    <a routerLink="/negocio/{{lugar.id}}"><li class="list-group-item" *ngIf="lugar.active">{{lugar.nombre}}</li></a>
                 </ng-container>
             </ul>     
         </div>
