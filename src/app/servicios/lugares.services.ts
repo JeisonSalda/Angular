@@ -14,7 +14,10 @@ export class LugaresServices{
 
     public getLugares(){
         //return this.afDB.list('lugares/');
-        return this.http.get(this.API_ENDPOINT+'/lugares.json');
+        return this.http.get(this.API_ENDPOINT+'/.json').map( (resultado) => {
+            const datos = resultado.json().lugares;
+            return datos;
+        } )
     }
 
     buscarLugar(id){
@@ -36,7 +39,6 @@ export class LugaresServices{
     }
 
     public getLugar( idLugar ){
-        debugger;
         return this.afDB.object('lugares/' + idLugar);
     }
 

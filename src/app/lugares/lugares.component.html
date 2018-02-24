@@ -1,6 +1,10 @@
+<div class="alert alert-danger" role="alert"  *ngIf="isError">
+    {{mensajeError}}
+</div>
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]= "12" >
     <agm-marker *ngFor="let lugar of listaLugares" [latitude]="lugar.lat" [longitude]="lugar.lng" ></agm-marker>
 </agm-map>
+<br/>
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -8,12 +12,22 @@
         <a class="btn btn-primary" routerLink="/negocio/new">Crear Nuevo Negocio</a>
             <ul class="list-group">
                 <ng-container *ngFor="let lugar of listaLugares">
-                    <a routerLink="/negocio/{{lugar.id}}"><li class="list-group-item" *ngIf="lugar.active">{{lugar.nombre}}</li></a>
+                    <a routerLink="/negocio/{{lugar.id}}"><li class="list-group-item" *ngIf="lugar.active">{{lugar.nombre}}
+                        <br/>
+                        <small>Creado: {{lugar.id | date: "medium" | uppercase}} </small>
+                    </li>
+                </a>
+                   
                 </ng-container>
             </ul>     
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" [@contenedorAnimable]="state">
             <h2>Destacados</h2>
+            <ng-container *ngFor="let lugar of listaLugares">
+                <div class="bg-warning padding" *ngIf="lugar.plan == 'Pagado'">
+                    <a routerLink="/negocio/{{lugar.id}}">{{lugar.nombre}}   <span class="glyphicon glyphicon-star" *ngIf="lugar.plan == 'Pagado'"></span></a>
+                </div>
+            </ng-container>  
         </div>
     </div>     
 </div>
