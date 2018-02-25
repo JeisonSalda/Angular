@@ -14,7 +14,7 @@
                 <ng-container *ngFor="let lugar of listaLugares">
                     <a routerLink="/negocio/{{lugar.id}}"><li class="list-group-item" *ngIf="lugar.active">{{lugar.nombre}}
                         <br/>
-                        <small>Creado: {{lugar.id | date: "full" | uppercase}} </small>
+                        <small>Creado: {{lugar.id | date: "medium" | uppercase}} </small>
                     </li>
                 </a>
                    

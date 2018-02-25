@@ -29,8 +29,7 @@ export class LugaresComponent{
     isError = false;
     state = 'inicial';    
     constructor( private lugaresServicio: LugaresServices ){
-        lugaresServicio.getLugares()
-        .subscribe( (lugares) => {
+        lugaresServicio.getLugares().valueChanges().subscribe( (lugares) => {
             this.listaLugares = lugares;
             var me = this;
             this.listaLugares =  Object.keys(me.listaLugares).map( function( key ){ return me.listaLugares[ key ] });

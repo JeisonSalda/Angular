@@ -13,11 +13,11 @@ export class LugaresServices{
     }
 
     public getLugares(){
-        //return this.afDB.list('lugares/');
-        return this.http.get(this.API_ENDPOINT+'/.json').map( (resultado) => {
+        return this.afDB.list('lugares/');
+        /*return this.http.get(this.API_ENDPOINT+'/.json').map( (resultado) => {
             const datos = resultado.json().lugares;
             return datos;
-        } )
+        } )*/
     }
 
     buscarLugar(id){

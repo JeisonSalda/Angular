@@ -18,14 +18,20 @@ import { NegocioComponent } from './negocio/negocio.component';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { AutorizacionService } from './servicios/autorizacion.services';
+import { AccesoRutasServices } from './servicios/guard.services';
 
 
 const appRoutes : Routes = [
-  {path:'', component: LugaresComponent},
+  {path:'', component: LoginComponent},
   {path:'lugares', component: LugaresComponent},
   {path:'detalle/:id', component: DetalleComponent},
-  {path:'contacto', component: ContactoComponent},
-  {path:'negocio/:id', component: NegocioComponent}
+  {path:'contacto', component: ContactoComponent, canActivate : [AccesoRutasServices]},
+  {path:'negocio/:id', component: NegocioComponent, canActivate : [AccesoRutasServices]},
+  {path: 'login', component: LoginComponent},
+  {path: 'registro', component: RegistroComponent}
 
 ]
 export const firebaseConfig = {
@@ -43,7 +49,9 @@ export const firebaseConfig = {
     DetalleComponent,
     LugaresComponent,
     ContactoComponent,
-    NegocioComponent
+    NegocioComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +67,7 @@ export const firebaseConfig = {
     BrowserAnimationsModule
     
   ],
-  providers: [LugaresServices],
+  providers: [LugaresServices, AutorizacionService, AccesoRutasServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
